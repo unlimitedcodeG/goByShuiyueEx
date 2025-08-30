@@ -2,16 +2,13 @@ package main
 
 import "fmt"
 
-func main() {
-	// 数组
-	arr := [3]int{1, 2, 3}
-	arrCopy := arr
-	arrCopy[0] = 100
-	fmt.Println(arr, arrCopy)
+func f() {}
 
-	//切片
-	slice := []int{1, 2, 3}
-	sliceCopy := slice
-	sliceCopy[0] = 100
-	fmt.Println(slice, sliceCopy)
+var g = "g"
+
+func main() {
+	f := "f"
+	fmt.Println(f) // "f"; local var f shadows package-level func f
+	fmt.Println(g) // "g"; package-level var
+	fmt.Println(h) // compile error: undefined: h
 }
