@@ -3,12 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	s := make([]int, 0, 10)
-	fmt.Println(s, len(s), cap(s))
-	s = append(s, 1)
-	fmt.Println(s, len(s), cap(s))
-	s = append(s, 2)
-	fmt.Println(s, len(s), cap(s))
-	s = append(s, 3)
-	fmt.Println(s, len(s), cap(s))
+	m := make(map[string]int)
+	m["a"] = 1
+	m["b"] = 2
+	m["c"] = 3
+	m["d"] = 4
+	m["e"] = 5
+	m["f"] = 6
+	m["g"] = 7
+	m["h"] = 8
+	fmt.Println(m)
 }
