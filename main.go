@@ -2,18 +2,21 @@ package main
 
 import "fmt"
 
-func f() {}
+func f() int {
+	return 0
+}
 
-var g = "g"
+func g(n int) int {
+	return n
+}
 
 func main() {
-	x := "hello"
-	for i := 0; i < len(x); i++ {
-		x := x[i]
-		if x != ' ' {
-			x := x + 'A' - 'a'
-			fmt.Printf("%c", x) // "HELLO" (one letter per iteration)
-		}
+	if x := f(); x == 0 {
+		fmt.Println(x)
+	} else if y := g(x); x == y {
+		fmt.Println(x, y)
+	} else {
+		fmt.Println(x, y)
 	}
-	fmt.Printf("  %s \n", x)
+	fmt.Println(x, y) // compile error: x and y are not visible here
 }
