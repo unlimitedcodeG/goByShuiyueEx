@@ -15,5 +15,5 @@ func main() {
 			fmt.Printf("%c", x) // "HELLO" (one letter per iteration)
 		}
 	}
-
+	fmt.Printf("  %s \n", x)
 }
