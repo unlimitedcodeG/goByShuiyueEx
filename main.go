@@ -11,12 +11,9 @@ func g(n int) int {
 }
 
 func main() {
-	if x := f(); x == 0 {
-		fmt.Println(x)
-	} else if y := g(x); x == y {
-		fmt.Println(x, y)
-	} else {
-		fmt.Println(x, y)
+	text := "hello"
+	for _, ch := range text {
+		upper := ch + 'A' - 'a'
+		fmt.Printf("%c", upper)
 	}
-	fmt.Println(x, y) // compile error: x and y are not visible here
 }
