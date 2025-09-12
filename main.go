@@ -1,18 +1,31 @@
 package main
 
-import (
-	"context"
-	"testing"
+import "fmt"
 
-	"github.com/stretchr/testify/assert"
-)
-
-func testCtx(t *testing.T) {
-	ctx := context.Background()
-	assert.Equal(t, context.Context(ctx), nil)
+func equal(x, y map[string]int) bool {
+	if len(x) != len(y) {
+		return false
+	}
+	for k, xv := range x {
+		if yv, ok := y[k]; !ok || yv != xv {
+			return false
+		}
+	}
+	return true
 }
 func main() {
-	// testCtx requires a *testing.T parameter, but main() doesn't have access to one
-	// This function is meant for testing, not for main execution
-	// Removing the call or replacing with appropriate main logic
+	ages := make(map[string]int)
+	ages["alice"] = 31
+	ages["charlie"] = 34
+	// True if equal is written incorrectly.
+	equal(map[string]int{"A": 0}, map[string]int{"B": 42})
+
+	fmt.Println(ages)
+	fmt.Println(ages["alice"])
+	fmt.Println(ages["charlie"])
+	fmt.Println(ages["bob"])
+	delete(ages, "alice") // remove element ages["alice"]
+	fmt.Println(ages)
+	ages["bob"] = ages["bob"] + 1 // happy birthday!
+	fmt.Println(ages["bob"])
 }
