@@ -8,10 +8,13 @@ import (
 )
 
 func main() {
+	// 提示用户输入
+	fmt.Println("请输入文本（输入完成后按 Ctrl+D 结束）:")
+
 	// 创建一个map来存储单词频率
 	wordFreq := make(map[string]int)
 
-	// 创建scanner从标准输入g
+	// 创建scanner从标准输入读取
 	input := bufio.NewScanner(os.Stdin)
 
 	// 设置按单词分割而不是按行分割

@@ -1,0 +1,4 @@
+Go is a programming language developed by Google.
+Go is simple, fast, and reliable.
+Many developers love Go for its simplicity and performance.
+Go Go Go programming is fun!
