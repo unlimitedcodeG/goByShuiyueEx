@@ -1,31 +1,43 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"sort"
+)
 
-func equal(x, y map[string]int) bool {
-	if len(x) != len(y) {
-		return false
-	}
-	for k, xv := range x {
-		if yv, ok := y[k]; !ok || yv != xv {
-			return false
-		}
-	}
-	return true
-}
 func main() {
-	ages := make(map[string]int)
-	ages["alice"] = 31
-	ages["charlie"] = 34
-	// True if equal is written incorrectly.
-	equal(map[string]int{"A": 0}, map[string]int{"B": 42})
+	// 创建一个map来存储单词频率
+	wordFreq := make(map[string]int)
 
-	fmt.Println(ages)
-	fmt.Println(ages["alice"])
-	fmt.Println(ages["charlie"])
-	fmt.Println(ages["bob"])
-	delete(ages, "alice") // remove element ages["alice"]
-	fmt.Println(ages)
-	ages["bob"] = ages["bob"] + 1 // happy birthday!
-	fmt.Println(ages["bob"])
+	// 创建scanner从标准输入g
+	input := bufio.NewScanner(os.Stdin)
+
+	// 设置按单词分割而不是按行分割
+	input.Split(bufio.ScanWords)
+
+	// 扫描每个单词并统计频率
+	for input.Scan() {
+		word := input.Text()
+		wordFreq[word]++
+	}
+
+	// 检查扫描过程中是否有错误
+	if err := input.Err(); err != nil {
+		fmt.Fprintf(os.Stderr, "wordfreq: %v\n", err)
+		os.Exit(1)
+	}
+
+	// 为了有序输出，将单词提取到切片中并排序
+	var words []string
+	for word := range wordFreq {
+		words = append(words, word)
+	}
+	sort.Strings(words)
+
+	// 输出每个单词及其频率
+	for _, word := range words {
+		fmt.Printf("%s: %d\n", word, wordFreq[word])
+	}
 }
