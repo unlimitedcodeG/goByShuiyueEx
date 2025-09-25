@@ -1,46 +1,49 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"sort"
-)
+import "fmt"
+
+type Hero struct {
+	Name  string
+	Age   int
+	Level int
+}
+
+func (h Hero) Show() {
+	fmt.Println(h.Name, h.Age, h.Level)
+	fmt.Println("Age = ", h.Age)
+	fmt.Println("Name = ", h.Name)
+	fmt.Println("Level = ", h.Level)
+}
+
+func (h Hero) GetName() string {
+	return h.Name
+}
+
+func (h *Hero) SetName(name string) {
+	h.Name = name
+}
+
+func (h Hero) GetAge() int {
+	return h.Age
+}
+
+func (h *Hero) SetAge(age int) {
+	h.Age = age
+}
+
+func (h Hero) GetLevel() int {
+	return h.Level
+}
+
+func (h *Hero) SetLevel(level int) {
+	h.Level = level
+}
 
 func main() {
-	// 提示用户输入
-	fmt.Println("请输入文本（输入完成后按 Ctrl+D 结束）:")
-
-	// 创建一个map来存储单词频率
-	wordFreq := make(map[string]int)
-
-	// 创建scanner从标准输入读取
-	input := bufio.NewScanner(os.Stdin)
-
-	// 设置按单词分割而不是按行分割
-	input.Split(bufio.ScanWords)
-
-	// 扫描每个单词并统计频率
-	for input.Scan() {
-		word := input.Text()
-		wordFreq[word]++
-	}
-
-	// 检查扫描过程中是否有错误
-	if err := input.Err(); err != nil {
-		fmt.Fprintf(os.Stderr, "wordfreq: %v\n", err)
-		os.Exit(1)
-	}
-
-	// 为了有序输出，将单词提取到切片中并排序
-	var words []string
-	for word := range wordFreq {
-		words = append(words, word)
-	}
-	sort.Strings(words)
-
-	// 输出每个单词及其频率
-	for _, word := range words {
-		fmt.Printf("%s: %d\n", word, wordFreq[word])
-	}
+	hero := Hero{Name: "John", Age: 20, Level: 1}
+	hero.Show()
+	hero.SetName("Jane")
+	hero.SetAge(21)
+	hero.SetLevel(2)
+	hero.Show()
 }
